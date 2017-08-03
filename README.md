@@ -1,5 +1,5 @@
 # H1-policyscanner
-This is Visual Studio project (C# language). Compiled binaries you can find in the Release folder
+This is Visual Studio project (C# language). You can find compiled binaries in the Release folder.
 
 #Purpose
 I wrote the tool for the tracking plocicies changes of the HackerOne public and external programs.
