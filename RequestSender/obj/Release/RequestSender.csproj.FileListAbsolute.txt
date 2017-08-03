@@ -1,0 +1,9 @@
+D:\aaa\system\Projects\HackerOne\RequestSender\bin\Release\HackerOne.exe.config
+D:\aaa\system\Projects\HackerOne\RequestSender\obj\Release\RequestSender.csprojResolveAssemblyReference.cache
+D:\aaa\system\Projects\HackerOne\RequestSender\obj\Release\RequestSender.Form1.resources
+D:\aaa\system\Projects\HackerOne\RequestSender\obj\Release\RequestSender.Properties.Resources.resources
+D:\aaa\system\Projects\HackerOne\RequestSender\obj\Release\RequestSender.csproj.GenerateResource.Cache
+D:\aaa\system\Projects\HackerOne\RequestSender\bin\Release\HackerOne.exe
+D:\aaa\system\Projects\HackerOne\RequestSender\bin\Release\HackerOne.pdb
+D:\aaa\system\Projects\HackerOne\RequestSender\obj\Release\HackerOne.exe
+D:\aaa\system\Projects\HackerOne\RequestSender\obj\Release\HackerOne.pdb
