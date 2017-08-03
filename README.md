@@ -11,3 +11,7 @@ Tool works slowly in consistent mode (we do not want to harm HackerOne servers b
 
 ## How to use
 In the first scan, tool will grab all existing policies and save the info to the XML files. All next scans will show only changed policies.
+
+
+## Troubleshooting
+The project uses Newtonsoft.Json .NET library, so if you want to modify the project, you should re-reference this library in the VS Project (existing reference can be outdated). You can find the .dll in the Release folder.
