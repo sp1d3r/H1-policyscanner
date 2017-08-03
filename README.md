@@ -7,6 +7,7 @@ The tool uses comparsion method, based on the policies change date, and md5 comp
 
 ## Code
 I wrote this quick enough, so there are many funny and not optimized places in the code. Feel free to modify project as you like.
+Tool works slowly in consistent mode (we do not want to harm HackerOne servers by multiple parallel requests)
 
 ## How to use
-In the first scan, tool will grab all existing policies and save the haches to the XML files. All next scans will show only changed policies.
+In the first scan, tool will grab all existing policies and save the info to the XML files. All next scans will show only changed policies.
