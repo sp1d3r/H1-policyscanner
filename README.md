@@ -10,7 +10,7 @@ I wrote this quick enough, so there are many funny and not optimized places in t
 Tool works slowly in consistent mode (we do not want to harm HackerOne servers by multiple parallel requests)
 
 ## How to use
-In the first scan, tool will grab all existing policies and save the info to the XML files. All next scans will show only changed policies.
+In the first scan, tool will grab all existing policies and save them info to the XML files. All next scans will show only changed policies.
 
 
 ## Troubleshooting
