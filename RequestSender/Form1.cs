@@ -84,7 +84,7 @@ namespace RequestSender
                 for (int z = 0; z < scope.Count; z++)
                 {
                     scp+=scope[z].InnerText;
-                    tmp += scp;
+                    tmp += scope[z].InnerText+Environment.NewLine;
                 }
                 scp = CalculateMD5Hash(scp);
                 verify(url[i].InnerText, json,scp);
@@ -216,7 +216,7 @@ namespace RequestSender
             url = doc.SelectNodes("/root/item/url");
             float j;
             float uc;
-            System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\test.txt");
+           // System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\test.txt");
             
             for (int i = 0; i < url.Count; i++)
             {
@@ -231,12 +231,12 @@ namespace RequestSender
                 lstpol = root2.SelectSingleNode("/root/external_program/policy").InnerText.ToLower();
                 //if (lstpol.Contains("signal") || lstpol.Contains("invit") || lstpol.Contains("bounty") || lstpol.Contains("swag") || lstpol.Contains("private") || lstpol.Contains("swag") || lstpol.Contains("gift") || lstpol.Contains("shirt"))
                 // MessageBox.Show(url[i].InnerText);
-                if (lstpol.Contains("signal") || lstpol.Contains("invit"))
-                    file.WriteLine(url[i].InnerText);
+               // if (lstpol.Contains("signal") || lstpol.Contains("invit"))
+                  //  file.WriteLine(url[i].InnerText);
                 for (int z = 0; z < scope.Count; z++)
                 {
                     scp += scope[z].InnerText;
-                    tmp += scp;
+                    tmp += scope[z].InnerText+Environment.NewLine;
                 }
                 scp = CalculateMD5Hash(scp);
                 verify2(url[i].InnerText, json, scp);
@@ -248,7 +248,7 @@ namespace RequestSender
                 progressBar1.Value = (int)Math.Ceiling((j / uc) * 100);
                 //Application.DoEvents();
             }
-            file.Close();
+           // file.Close();
             outs += "</root>";
             System.IO.File.WriteAllText("policy_ext.xml", outs);
             System.IO.File.WriteAllText("extscopes.txt", tmp);
