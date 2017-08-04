@@ -29,25 +29,25 @@ namespace RequestSender
             myreq.method = "GET";
             string json;
             string outs = "<root>";
-            for (int i=0;i<=count/100;i++)
+            for (int i = 0; i <= count / 100; i++)
             {
-                myreq.Url = "https://hackerone.com/programs/search?query=type%3Ahackerone&sort=published_at%3Adescending&page="+(i+1);
+                myreq.Url = "https://hackerone.com/programs/search?query=type%3Ahackerone&sort=published_at%3Adescending&page=" + (i + 1);
                 json = myreq.Send();
                 doc = JsonConvert.DeserializeXmlNode(json, "root");
                 XmlNode root = doc.DocumentElement;
                 count = Int32.Parse(root.SelectSingleNode("/root/total").InnerText);
                 lstname = root.SelectNodes("/root/results/name");
                 lsturl = root.SelectNodes("/root/results/url");
-                for (int j=0;j<lstname.Count;j++)
+                for (int j = 0; j < lstname.Count; j++)
                 {
                     outs += "<item>";
-                    outs +="<name>"+lstname[j].InnerText+"</name>";
-                    outs+="<url>" + lsturl[j].InnerText + "</url>";
+                    outs += "<name>" + lstname[j].InnerText + "</name>";
+                    outs += "<url>" + lsturl[j].InnerText + "</url>";
                     outs += "</item>";
                 }
             }
             outs += "</root>";
-            System.IO.File.WriteAllText("out.xml", outs);
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "out.xml", outs);
             policies();
         }
 
@@ -62,18 +62,18 @@ namespace RequestSender
             XmlNodeList url;
             XmlNodeList scope;
             string json;
-            string scp="";
+            string scp = "";
             string tmp = "";
             string outs = "<root>";
             XmlDocument doc = new XmlDocument();
             XmlDocument doc2 = new XmlDocument();
-            doc.Load("out.xml");
+            doc.Load(AppDomain.CurrentDomain.BaseDirectory + "out.xml");
             url = doc.SelectNodes("/root/item/url");
             float j;
             float uc;
             for (int i = 0; i < url.Count; i++)
             {
-               // myreq.Url = "https://hackerone.com" + url[i].InnerText + "/policy_versions";
+                // myreq.Url = "https://hackerone.com" + url[i].InnerText + "/policy_versions";
                 //json = CalculateMD5Hash(myreq.Send());
                 myreq.Url = "https://hackerone.com" + url[i].InnerText;
                 doc2 = JsonConvert.DeserializeXmlNode(myreq.Send(), "root");
@@ -83,11 +83,11 @@ namespace RequestSender
                 scope = root2.SelectNodes("/root/scopes");
                 for (int z = 0; z < scope.Count; z++)
                 {
-                    scp+=scope[z].InnerText;
-                    tmp += scope[z].InnerText+Environment.NewLine;
+                    scp += scope[z].InnerText;
+                    tmp += scope[z].InnerText + Environment.NewLine;
                 }
                 scp = CalculateMD5Hash(scp);
-                verify(url[i].InnerText, json,scp);
+                verify(url[i].InnerText, json, scp);
                 outs += "<item url=\"" + url[i].InnerText + "\">" + json + "</item>";
                 outs += "<scope url=\"" + url[i].InnerText + "\">" + scp + "</scope>";
                 scp = "";
@@ -97,8 +97,8 @@ namespace RequestSender
                 //Application.DoEvents();
             }
             outs += "</root>";
-            System.IO.File.WriteAllText("policy.xml", outs);
-            System.IO.File.WriteAllText("pubscopes.txt", tmp);
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "policy.xml", outs);
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "pubscopes.txt", tmp);
             tmp = "";
             MessageBox.Show("Finish!");
             progressBar1.Value = 0;
@@ -125,7 +125,7 @@ namespace RequestSender
             XmlDocument doc = new XmlDocument();
             try
             {
-                doc.Load("policy.xml");
+                doc.Load(AppDomain.CurrentDomain.BaseDirectory + "policy.xml");
                 XmlNode root = doc.DocumentElement;
                 if ((root.SelectSingleNode("/root/item[@url=\"" + url + "\"]").InnerText != json) || (root.SelectSingleNode("/root/scope[@url=\"" + url + "\"]").InnerText != scp))
                 {
@@ -144,7 +144,7 @@ namespace RequestSender
             XmlDocument doc = new XmlDocument();
             try
             {
-                doc.Load("policy_ext.xml");
+                doc.Load(AppDomain.CurrentDomain.BaseDirectory + "policy_ext.xml");
                 XmlNode root = doc.DocumentElement;
                 if ((root.SelectSingleNode("/root/item[@url=\"" + url + "\"]").InnerText != json) || (root.SelectSingleNode("/root/scope[@url=\"" + url + "\"]").InnerText != scp))
                 {
@@ -182,7 +182,7 @@ namespace RequestSender
                 count = Int32.Parse(root.SelectSingleNode("/root/total").InnerText);
                 lstname = root.SelectNodes("/root/results/name");
                 lsturl = root.SelectNodes("/root/results/url");
-                
+
                 for (int j = 0; j < lstname.Count; j++)
                 {
                     outs += "<item>";
@@ -192,7 +192,7 @@ namespace RequestSender
                 }
             }
             outs += "</root>";
-            System.IO.File.WriteAllText("out_ext.xml", outs);
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "out_ext.xml", outs);
             policiesext();
         }
 
@@ -212,12 +212,12 @@ namespace RequestSender
             string outs = "<root>";
             XmlDocument doc = new XmlDocument();
             XmlDocument doc2 = new XmlDocument();
-            doc.Load("out_ext.xml");
+            doc.Load(AppDomain.CurrentDomain.BaseDirectory + "out_ext.xml");
             url = doc.SelectNodes("/root/item/url");
             float j;
             float uc;
-           // System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\test.txt");
-            
+            // System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\test.txt");
+
             for (int i = 0; i < url.Count; i++)
             {
                 // myreq.Url = "https://hackerone.com" + url[i].InnerText + "/policy_versions";
@@ -231,12 +231,12 @@ namespace RequestSender
                 lstpol = root2.SelectSingleNode("/root/external_program/policy").InnerText.ToLower();
                 //if (lstpol.Contains("signal") || lstpol.Contains("invit") || lstpol.Contains("bounty") || lstpol.Contains("swag") || lstpol.Contains("private") || lstpol.Contains("swag") || lstpol.Contains("gift") || lstpol.Contains("shirt"))
                 // MessageBox.Show(url[i].InnerText);
-               // if (lstpol.Contains("signal") || lstpol.Contains("invit"))
-                  //  file.WriteLine(url[i].InnerText);
+                // if (lstpol.Contains("signal") || lstpol.Contains("invit"))
+                //  file.WriteLine(url[i].InnerText);
                 for (int z = 0; z < scope.Count; z++)
                 {
                     scp += scope[z].InnerText;
-                    tmp += scope[z].InnerText+Environment.NewLine;
+                    tmp += scope[z].InnerText + Environment.NewLine;
                 }
                 scp = CalculateMD5Hash(scp);
                 verify2(url[i].InnerText, json, scp);
@@ -248,10 +248,10 @@ namespace RequestSender
                 progressBar1.Value = (int)Math.Ceiling((j / uc) * 100);
                 //Application.DoEvents();
             }
-           // file.Close();
+            // file.Close();
             outs += "</root>";
-            System.IO.File.WriteAllText("policy_ext.xml", outs);
-            System.IO.File.WriteAllText("extscopes.txt", tmp);
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "policy_ext.xml", outs);
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/extscopes.txt", tmp);
             tmp = "";
             MessageBox.Show("Finish!");
             progressBar1.Value = 0;
