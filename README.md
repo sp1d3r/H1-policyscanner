@@ -12,6 +12,8 @@ Tool works slowly in consistent mode (we do not want to harm HackerOne servers b
 ## How to use
 In the first scan, tool will grab all existing policies and save them info to the XML files. All next scans will show only changed policies. Scopes will be written in the .txt file.
 
+Remark: if the scope domains are listed in the text of the policy, not in the specific scope section - it will not be enumerated by this tool. Scopes enumeration works only for the programs with defined scope in the "Scope" section.
+
 
 ## Troubleshooting
 The project uses Newtonsoft.Json .NET library, so if you want to modify the project, you should re-reference this library in the VS Project (existing reference can be outdated). You can find the .dll in the Release folder.
