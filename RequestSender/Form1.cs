@@ -251,7 +251,7 @@ namespace RequestSender
             // file.Close();
             outs += "</root>";
             System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "policy_ext.xml", outs);
-            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/extscopes.txt", tmp);
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "extscopes.txt", tmp);
             tmp = "";
             MessageBox.Show("Finish!");
             progressBar1.Value = 0;
