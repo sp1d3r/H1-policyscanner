@@ -1,5 +1,5 @@
 # H1-policyscanner
-This is Visual Studio project (C# language). You can find compiled binaries in the Release folder. Yeah, i agree that it is time to learn Python:)
+This is Visual Studio project (C# language), requires .NET Framework (4.5-4.5.2). You can find compiled binaries in the Release folder. Yeah, i agree that it is time to learn Python:)
 
 ## Purpose
 I wrote the tool for the tracking policies changes of the HackerOne public and external programs.
