@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -63,6 +63,7 @@ namespace RequestSender
             XmlNodeList scope;
             string json;
             string scp="";
+            string tmp = "";
             string outs = "<root>";
             XmlDocument doc = new XmlDocument();
             XmlDocument doc2 = new XmlDocument();
@@ -83,6 +84,7 @@ namespace RequestSender
                 for (int z = 0; z < scope.Count; z++)
                 {
                     scp+=scope[z].InnerText;
+                    tmp += scp;
                 }
                 scp = CalculateMD5Hash(scp);
                 verify(url[i].InnerText, json,scp);
@@ -96,6 +98,8 @@ namespace RequestSender
             }
             outs += "</root>";
             System.IO.File.WriteAllText("policy.xml", outs);
+            System.IO.File.WriteAllText("pubscopes.txt", tmp);
+            tmp = "";
             MessageBox.Show("Finish!");
             progressBar1.Value = 0;
         }
@@ -204,6 +208,7 @@ namespace RequestSender
             string lstpol;
             string json;
             string scp = "";
+            string tmp = "";
             string outs = "<root>";
             XmlDocument doc = new XmlDocument();
             XmlDocument doc2 = new XmlDocument();
@@ -231,6 +236,7 @@ namespace RequestSender
                 for (int z = 0; z < scope.Count; z++)
                 {
                     scp += scope[z].InnerText;
+                    tmp += scp;
                 }
                 scp = CalculateMD5Hash(scp);
                 verify2(url[i].InnerText, json, scp);
@@ -245,6 +251,8 @@ namespace RequestSender
             file.Close();
             outs += "</root>";
             System.IO.File.WriteAllText("policy_ext.xml", outs);
+            System.IO.File.WriteAllText("extscopes.txt", tmp);
+            tmp = "";
             MessageBox.Show("Finish!");
             progressBar1.Value = 0;
         }
