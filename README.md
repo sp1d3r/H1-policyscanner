@@ -17,3 +17,4 @@ Remark: if the scope domains are listed in the text of the policy, not in the sp
 
 ## Troubleshooting
 The project uses Newtonsoft.Json .NET library, so if you want to modify the project, you should re-reference this library in the VS Project (existing reference can be outdated). You can find the .dll in the Release folder.
+If you use just binaries, make sure you have Newtonsoft.Json.dll in your application folder.
